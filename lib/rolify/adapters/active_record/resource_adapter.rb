@@ -13,7 +13,7 @@ module Rolify
 
       def in(relation, user, role_names)
         roles = user.roles.where(:name => role_names)
-        relation.where("#{quote(role_class.table_name)}.#{role_class.primary_key} IN (?) AND ((resource_id = #{quote(relation.table_name)}.#{relation.primary_key}) OR (resource_id IS NULL))", roles)
+        relation.where("#{quote(role_class.table_name)}.#{role_class.primary_key} IN (?) AND ((resource_id = #{quote(relation.table_name)}.#{relation.primary_key}) OR (resource_id IS NULL))", roles.to_a)
       end
 
       private
